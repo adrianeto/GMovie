@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="gmoviedb.gmoviedb.main" target="11" />
-      <module name="gmoviedb.gmoviedb.test" target="11" />
+      <module name="gmoviedb.gmoviedb.main~1" target="11" />
+      <module name="gmoviedb.gmoviedb.test~1" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

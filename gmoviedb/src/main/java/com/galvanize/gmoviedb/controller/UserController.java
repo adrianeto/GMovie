@@ -82,7 +82,7 @@ public class UserController {
 
     }
 
-    @PatchMapping("/Movie")
+   /* @PatchMapping("/Movie")
     public Movie updateMovieRating(@RequestParam String title, @RequestParam Integer rating){
         Movie movie = this.repo.findByTitle(title);
         movie.setRating(ratingAvg(movie,rating));
@@ -91,7 +91,7 @@ public class UserController {
 
         return movie;
 
-    }
+    }*/
 
 
 
