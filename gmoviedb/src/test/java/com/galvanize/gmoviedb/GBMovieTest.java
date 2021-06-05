@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -147,6 +146,31 @@ public class GBMovieTest {
                 .andExpect(content().string("Not existent movie"));
 
     }
+
+    @Test
+    public void testUserRatingContribution() throws Exception{
+
+        MockHttpServletRequestBuilder request = patch("/Movie?title=The Avengers&rating=4&review=I liked the movie")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+   this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title", is("The Avengers")))
+                .andExpect(jsonPath("$.rating", is(4)))
+                .andExpect(jsonPath("$.review", is("I liked the movie")));
+    }
+
+    //@Test
+   /* public void testRatingAverage() throws Exception {
+        MockHttpServletRequestBuilder request = patch("/Movie?title=The Avengers&rating=2&review=I liked the movie")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+        this.mvc.perform(request).andExpect(status().isOk());
+        MockHttpServletRequestBuilder request = patch("/Movie?title=The Avengers&rating=1&review=I liked the movie")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+        this.mvc.perform(request)
+    */
 
 
 }

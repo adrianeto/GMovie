@@ -55,6 +55,19 @@ public class UserController {
         }
 
     }
+    @PatchMapping("/Movie")
+    public Movie updateMovie(@RequestParam String title, @RequestParam Integer rating, @RequestParam String review){
+        Movie movie = this.repo.findByTitle(title);
+        movie.setRating(rating);
+        movie.setReview(review);
+
+        this.repo.save(movie);
+
+        return movie;
+
+    }
+
+
 
 
 }

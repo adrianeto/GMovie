@@ -22,7 +22,13 @@ public class Movie {
 
     private String description;
 
-    private String rating;
+    private Integer rating;
+
+    public String getReview() {
+        return review;
+    }
+
+    private String review;
 
     public Movie(){
 
@@ -60,12 +66,13 @@ public class Movie {
         this.release = release;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
+        //this.rating = (this.rating +rating) / 2;
     }
 
 
@@ -87,5 +94,7 @@ public class Movie {
     }
 
 
-
+    public void setReview(String review) {
+        this.review=review;
+    }
 }
