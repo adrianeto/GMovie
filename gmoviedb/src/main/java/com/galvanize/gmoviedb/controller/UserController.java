@@ -29,9 +29,9 @@ public class UserController {
     }
 
     @GetMapping("/Movie/{title}")
-    public Integer ratingAverageByTitle( @PathVariable String title ){
+    public Movie ratingAverageByTitle( @PathVariable String title ){
        Movie movie = this.repo.findByTitle(title);
-       return movie.getRating();
+       return movie;
     }
 
     public Integer ratingAvg(Movie movie, Integer rating){
@@ -82,7 +82,7 @@ public class UserController {
 
     }
 
-   /* @PatchMapping("/Movie")
+    @PatchMapping("/Movie/AvgRatingDetail")
     public Movie updateMovieRating(@RequestParam String title, @RequestParam Integer rating){
         Movie movie = this.repo.findByTitle(title);
         movie.setRating(ratingAvg(movie,rating));
@@ -91,7 +91,7 @@ public class UserController {
 
         return movie;
 
-    }*/
+    }
 
 
 
