@@ -72,7 +72,6 @@ public class Movie {
 
     public void setRating(Integer rating) {
         this.rating = rating;
-        //this.rating = (this.rating +rating) / 2;
     }
 
 
