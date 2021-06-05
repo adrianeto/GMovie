@@ -160,17 +160,30 @@ public class GBMovieTest {
                 .andExpect(jsonPath("$.review", is("I liked the movie")));
     }
 
-    //@Test
-   /* public void testRatingAverage() throws Exception {
-        MockHttpServletRequestBuilder request = patch("/Movie?title=The Avengers&rating=2&review=I liked the movie")
+    @Test
+    public void testRatingAverage() throws Exception {
+        MockHttpServletRequestBuilder request = patch("/Movie?title=The Avengers&rating=5")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
         this.mvc.perform(request).andExpect(status().isOk());
-        MockHttpServletRequestBuilder request = patch("/Movie?title=The Avengers&rating=1&review=I liked the movie")
+
+        MockHttpServletRequestBuilder request2 = patch("/Movie?title=The Avengers&rating=3")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON);
-        this.mvc.perform(request)
-    */
+        this.mvc.perform(request).andExpect(status().isOk());
+
+        MockHttpServletRequestBuilder getRequest = get("/Movie/The Avengers")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        this.mvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.rating", is(4)));
+
+
+
+
+    }
 
 
 }
