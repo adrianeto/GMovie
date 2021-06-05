@@ -2,6 +2,7 @@ package com.galvanize.gmoviedb.controller;
 
 import com.galvanize.gmoviedb.domain.Movie;
 import com.galvanize.gmoviedb.service.GBMovieRepo;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -37,9 +38,22 @@ public class UserController {
     }
 
     @GetMapping("/Movie")
-    public Movie getMovieByTitle(@RequestParam String title){
+    public ResponseEntity<Object> getMovieByTitle(@RequestParam String title){
         Movie myMovie = this.repo.findByTitle(title);
-        return myMovie;
+        if (myMovie == null) {
+            //return new String("{message: " +
+            HttpHeaders header = new HttpHeaders();
+            header.add("desc", "a Header description");
+            String msg = "Not existent movie";
+            return new ResponseEntity(msg, header, HttpStatus.OK );
+        }
+        else{
+            HttpHeaders header = new HttpHeaders();
+            header.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(myMovie, header, HttpStatus.OK );
+
+        }
+
     }
 
 
