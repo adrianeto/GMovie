@@ -28,14 +28,16 @@ public class GBMovieTest {
     @Test
     @Transactional
     @Rollback
-    public void listOfMoviesEmpty(){
+    public void listOfMoviesEmpty() throws Exception{
         MockHttpServletRequestBuilder request = get("/User")
                 .contentType(MediaType.APPLICATION_JSON);
 
         this.mvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect( content().string("No movies"));
+                .andExpect( jsonPath("$.id"  ).doesNotExist());
+        //content().string("No movies"));
                         //jsonPath("$.id", instanceOf(Integer.class)));
+
 
     }
 }
