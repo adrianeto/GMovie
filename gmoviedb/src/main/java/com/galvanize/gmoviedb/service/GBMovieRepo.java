@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface GBMovieRepo extends CrudRepository<Movie, Long> {
 
 
+    public Movie findByTitle(String title);
 }

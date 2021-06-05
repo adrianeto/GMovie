@@ -35,9 +35,22 @@ public class GBMovieTest {
         this.mvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect( jsonPath("$.id"  ).doesNotExist());
-        //content().string("No movies"));
-                        //jsonPath("$.id", instanceOf(Integer.class)));
+    }
 
-
+    @Test
+    @Transactional
+    @Rollback
+    public void createNewMovieTest() throws Exception{
+        MockHttpServletRequestBuilder request = post("/User")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"title\": \"The Avengers\",\n" +
+                        "  \"director\": \"Joss Whedon\" ,\n" +
+                        "  \"actors\": \"Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth\" ,\n"+
+                        "  \"release\": \"2012\" ,\n" +
+                                "  \"description\": \"Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.\" ,\n" +
+                                "  \"rating\": \"null\"   }");
+          this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect( jsonPath("$.title"  ).value("The Avengers"));
     }
 }
